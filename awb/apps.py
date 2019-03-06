@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class AwbConfig(AppConfig):
+class AWBConfig(AppConfig):
     name = 'awb'

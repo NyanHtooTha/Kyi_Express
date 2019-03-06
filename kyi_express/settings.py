@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'rest_framework',
+    
+    'awb.apps.AWBConfig',
+    'kyi_express_user.apps.KyiExpressUserConfig',
 ]
 
 MIDDLEWARE = [
