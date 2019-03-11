@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import AWB
 
 from kyi_express_user.serializers import Kyi_Express_User_Serializer
-from kyi_express_user.models import Kyi_Express_User
 
 
 class AWBSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,12 +15,16 @@ class AWBSerializer(serializers.HyperlinkedModelSerializer):
         
 
     def create(self, validated_data):
-            sender_data = validated_data.pop('sender')
-            receiver_data = validated_data.pop('receiver')
+            sender_data = validated_data['sender']
+            receiver_data = validated_data['receiver']
             if sender_data:
-                sender = Kyi_Express_User.objects.get_or_create(**sender_data)[0]
-                validated_data['sender'] = sender
+                sender_serializer = Kyi_Express_User_Serializer(data=sender_data)
+                if sender_serializer.is_valid():
+                    sender_id = sender_serializer.save()
+                validated_data['sender'] = sender_id
             if receiver_data:
-                receiver = Kyi_Express_User.objects.get_or_create(**receiver_data)[0]
-                validated_data['receiver'] = receiver
+                receiver_serializer = Kyi_Express_User_Serializer(data=receiver_data)
+                if receiver_serializer.is_valid():
+                    receiver_id = receiver_serializer.save()
+                validated_data['receiver'] = receiver_id
             return AWB.objects.create(**validated_data)
