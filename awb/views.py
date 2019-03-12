@@ -11,4 +11,7 @@ class AWBViewSet(viewsets.ModelViewSet):
     queryset = AWB.objects.all()
     serializer_class = AWBSerializer
     
+    def get_view_name(self):
+        super(AWBViewSet, self).get_view_name()
+        return "AWB List"
         
