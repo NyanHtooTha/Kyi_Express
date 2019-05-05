@@ -11,7 +11,7 @@ class AWBSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = AWB
-        fields = ('awb_number', 'sender', 'receiver')
+        fields = ('url', 'awb_number', 'sender', 'receiver')
         
 
     def create(self, validated_data):

@@ -8,4 +8,4 @@ class Kyi_Express_User_Serializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Kyi_Express_User
-        fields = ("name", "mobile", "address")
+        fields = ("url", "name", "mobile", "address")
